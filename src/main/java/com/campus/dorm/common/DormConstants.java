@@ -10,3 +10,4 @@ public final class DormConstants {
     public static final int STATUS_OK = 1;
     public static final int STATUS_OFF = 0;
 }
+
