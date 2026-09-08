@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心 · 大学宿舍管理系统</title>
+  <link rel="stylesheet" href="../css/front.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+            <a class="brand" href="index.html">
+        <div class="brand-mark">栖</div>
+        <div class="brand-text">
+          <strong>栖舍</strong>
+          <span>大学宿舍管理系统</span>
+        </div>
+      </a>
+            <nav class="nav-links">
+        <a  href="index.html">首页</a>
+        <a  href="notices.html">公告</a>
+        <a  href="my-dorm.html">我的宿舍</a>
+        <a  href="repair.html">报修</a>
+        <a  href="leave.html">请假</a>
+        <a  href="visitor.html">访客</a>
+        <a  href="guide.html">入住指南</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container page-banner">
+    <h1>个人中心</h1>
+    <p>维护个人信息与登录密码</p>
+  </div>
+
+  <section class="section">
+    <div class="container" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px">
+      <div class="card">
+        <h2 style="font-size:18px;margin-bottom:16px">基本资料</h2>
+        <form data-demo data-success="资料已保存">
+          <div class="form-row">
+            <div class="form-group">
+              <label>学号</label>
+              <input class="form-control" value="2021001" readonly>
+            </div>
+            <div class="form-group">
+              <label>姓名</label>
+              <input class="form-control" value="张晓明" name="realName">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>手机号</label>
+              <input class="form-control" value="13900000001" name="phone">
+            </div>
+            <div class="form-group">
+              <label>邮箱</label>
+              <input class="form-control" value="xiaoming@campus.edu" name="email">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>学院</label>
+              <input class="form-control" value="计算机学院" readonly>
+            </div>
+            <div class="form-group">
+              <label>班级</label>
+              <input class="form-control" value="软工2101" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>头像表情</label>
+            <select class="form-control" name="avatar">
+              <option>👨‍🎓</option>
+              <option>👩‍🎓</option>
+              <option>🧑‍🎓</option>
+              <option>🙂</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">保存资料</button>
+        </form>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px">
+          <h2 style="font-size:18px;margin-bottom:16px">快捷入口</h2>
+          <div class="service-grid" style="grid-template-columns:1fr 1fr">
+            <a class="service-item" href="my-dorm.html"><div class="service-icon">🛏️</div><h3>我的宿舍</h3></a>
+            <a class="service-item" href="visitor.html"><div class="service-icon">🚪</div><h3>访客记录</h3></a>
+            <a class="service-item" href="hygiene.html"><div class="service-icon">✨</div><h3>卫生评分</h3></a>
+            <a class="service-item" href="repair.html"><div class="service-icon">🔧</div><h3>报修记录</h3></a>
+          </div>
+        </div>
+        <div class="card">
+          <h2 style="font-size:18px;margin-bottom:16px">修改密码</h2>
+          <form data-demo data-success="密码已修改">
+            <div class="form-group">
+              <label>原密码</label>
+              <input class="form-control" type="password" required>
+            </div>
+            <div class="form-group">
+              <label>新密码</label>
+              <input class="form-control" type="password" required>
+            </div>
+            <div class="form-group">
+              <label>确认新密码</label>
+              <input class="form-control" type="password" required>
+            </div>
+            <button class="btn btn-accent" type="submit">更新密码</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">大学宿舍管理系统</div>
+      <a href="login.html">退出登录</a>
+    </div>
+  </footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

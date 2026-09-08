@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宿舍公告 · 栖舍</title>
+  <link rel="stylesheet" href="../css/front.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+            <a class="brand" href="index.html">
+        <div class="brand-mark">栖</div>
+        <div class="brand-text">
+          <strong>栖舍</strong>
+          <span>大学宿舍管理系统</span>
+        </div>
+      </a>
+            <nav class="nav-links">
+        <a  href="index.html">首页</a>
+        <a class="active" href="notices.html">公告</a>
+        <a  href="my-dorm.html">我的宿舍</a>
+        <a  href="repair.html">报修</a>
+        <a  href="leave.html">请假</a>
+        <a  href="visitor.html">访客</a>
+        <a  href="guide.html">入住指南</a>
+      </nav>
+      <div class="nav-actions"><a class="btn btn-ghost btn-sm" href="login.html">登录</a></div>
+    </div>
+  </header>
+
+  <div class="container page-banner">
+    <h1>宿舍公告</h1>
+    <p>安全提醒、后勤通知与校园活动</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="toolbar">
+        <select class="form-control">
+          <option>全部分类</option>
+          <option>通知</option>
+          <option>安全</option>
+          <option>活动</option>
+          <option>维修</option>
+        </select>
+        <input class="form-control" placeholder="搜索公告标题">
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <div class="notice-list">
+        <a class="notice-item" href="notice-detail.html">
+          <span class="tag tag-safe">安全</span>
+          <div>
+            <h3>关于2026年春季学期宿舍安全检查的通知</h3>
+            <div class="meta">宿管中心 · 置顶</div>
+          </div>
+          <time>03-10</time>
+        </a>
+        <a class="notice-item" href="notice-detail.html">
+          <span class="tag tag-info">通知</span>
+          <div>
+            <h3>热水供应时间调整公告</h3>
+            <div class="meta">后勤处</div>
+          </div>
+          <time>03-08</time>
+        </a>
+        <a class="notice-item" href="notice-detail.html">
+          <span class="tag tag-event">活动</span>
+          <div>
+            <h3>宿舍文化节报名开始</h3>
+            <div class="meta">学生处</div>
+          </div>
+          <time>03-05</time>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">栖舍 · 大学宿舍管理系统</div>
+      <div>服务热线 400-800-2026</div>
+    </div>
+  </footer>
+</body>
+</html>

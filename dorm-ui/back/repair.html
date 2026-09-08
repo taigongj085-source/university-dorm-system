@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报修工单 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a href="room.html">房间管理</a>
+      <a href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a class="active" href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a href="visitor.html">访客登记</a>
+      <a href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>报修工单</h1>
+      <div class="user">待处理 2 · 处理中 1 · 已完成 12</div>
+    </div>
+
+    <div class="panel" id="replyPanel" style="display:none">
+      <div class="panel-head"><h2>处理工单</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="工单状态已更新">
+        <div class="form-group"><label>状态</label>
+          <select class="form-control"><option>处理中</option><option>已完成</option><option>已关闭</option></select>
+        </div>
+        <div class="form-group full"><label>处理回复</label><textarea class="form-control" rows="3" placeholder="填写处理说明">维修师傅已接单，预计明日上门。</textarea></div>
+        <div class="full"><button class="btn btn-primary" type="submit">提交</button></div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <input class="form-control" placeholder="标题 / 学生">
+        <select class="form-control"><option>全部状态</option><option>待处理</option><option>处理中</option><option>已完成</option></select>
+        <select class="form-control"><option>全部类别</option><option>水电</option><option>门窗</option><option>家具</option><option>网络</option></select>
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead><tr><th>标题</th><th>学生</th><th>房间</th><th>类别</th><th>状态</th><th>提交时间</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>门锁松动</td><td>李思雨</td><td>兰园2-201</td><td>门窗</td>
+            <td><span class="badge badge-warn">待处理</span></td>
+            <td>03-18 09:20</td>
+            <td class="actions"><button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('replyPanel').style.display='block'">处理</button></td>
+          </tr>
+          <tr>
+            <td>宿舍灯管闪烁</td><td>张晓明</td><td>梅园1-301</td><td>水电</td>
+            <td><span class="badge badge-info">处理中</span></td>
+            <td>03-17 21:05</td>
+            <td class="actions"><button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('replyPanel').style.display='block'">更新</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

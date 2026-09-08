@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生管理 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a href="room.html">房间管理</a>
+      <a href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a class="active" href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a href="visitor.html">访客登记</a>
+      <a href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>学生管理</h1>
+      <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">新增学生</button>
+    </div>
+
+    <div class="panel" id="editPanel" style="display:none">
+      <div class="panel-head"><h2>编辑学生</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="学生信息已保存">
+        <div class="form-group"><label>学号</label><input class="form-control" value="2021001" required></div>
+        <div class="form-group"><label>姓名</label><input class="form-control" value="张晓明" required></div>
+        <div class="form-group"><label>性别</label><select class="form-control"><option>男</option><option>女</option></select></div>
+        <div class="form-group"><label>手机号</label><input class="form-control" value="13900000001"></div>
+        <div class="form-group"><label>学院</label><input class="form-control" value="计算机学院"></div>
+        <div class="form-group"><label>专业</label><input class="form-control" value="软件工程"></div>
+        <div class="form-group"><label>年级</label><input class="form-control" value="2021"></div>
+        <div class="form-group"><label>班级</label><input class="form-control" value="软工2101"></div>
+        <div class="form-group"><label>辅导员</label><select class="form-control"><option>王老师</option></select></div>
+        <div class="form-group"><label>状态</label><select class="form-control"><option>在校</option><option>离校</option></select></div>
+        <div class="full"><button class="btn btn-primary" type="submit">保存</button></div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <input class="form-control" placeholder="学号 / 姓名 / 手机号">
+        <select class="form-control"><option>全部学院</option><option>计算机学院</option></select>
+        <select class="form-control"><option>全部状态</option><option>在校</option><option>离校</option></select>
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead>
+          <tr><th>学号</th><th>姓名</th><th>性别</th><th>学院 / 专业</th><th>班级</th><th>辅导员</th><th>宿舍</th><th>状态</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2021001</td><td>张晓明</td><td>男</td><td>计算机学院 / 软件工程</td><td>软工2101</td><td>王老师</td><td>梅园1-301-A</td>
+            <td><span class="badge badge-ok">在校</span></td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+          <tr>
+            <td>2021002</td><td>李思雨</td><td>女</td><td>计算机学院 / 软件工程</td><td>软工2101</td><td>王老师</td><td>兰园2-201-A</td>
+            <td><span class="badge badge-ok">在校</span></td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+          <tr>
+            <td>2021003</td><td>陈浩</td><td>男</td><td>计算机学院 / 网络工程</td><td>网工2102</td><td>王老师</td><td>梅园1-301-B</td>
+            <td><span class="badge badge-ok">在校</span></td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pager"><span>共 3 条</span><button class="btn btn-ghost btn-sm" type="button">上一页</button><button class="btn btn-ghost btn-sm" type="button">下一页</button></div>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

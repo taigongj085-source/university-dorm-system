@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>请假审核 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('leave')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>请假 / 晚归审核</h1></div>
+    <div class="panel">
+      <table class="data">
+        <thead><tr><th>学生ID</th><th>类型</th><th>事由</th><th>时间</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr th:each="r : ${list}">
+            <td th:text="${r.studentId}">1</td>
+            <td th:text="${r.leaveType==1?'请假':(r.leaveType==2?'晚归':'临时外出')}">类型</td>
+            <td th:text="${r.reason}">事由</td>
+            <td th:text="${r.startTime != null ? #temporals.format(r.startTime,'MM-dd HH:mm') : ''}">时间</td>
+            <td th:text="${r.status==0?'待审核':(r.status==1?'已通过':'已驳回')}">状态</td>
+            <td class="actions" th:if="${r.status==0}">
+              <form th:action="@{/admin/leaves/audit}" method="post" style="display:inline">
+                <input type="hidden" name="id" th:value="${r.id}">
+                <input type="hidden" name="status" value="1">
+                <button class="btn btn-primary btn-sm" type="submit">通过</button>
+              </form>
+              <form th:action="@{/admin/leaves/audit}" method="post" style="display:inline">
+                <input type="hidden" name="id" th:value="${r.id}">
+                <input type="hidden" name="status" value="2">
+                <input type="hidden" name="auditRemark" value="不符合规定">
+                <button class="btn btn-danger btn-sm" type="submit">驳回</button>
+              </form>
+            </td>
+            <td th:if="${r.status!=0}">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

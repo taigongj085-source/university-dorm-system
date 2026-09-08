@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线报修 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('repair')}"></header>
+<div class="container page-banner"><h1>在线报修</h1><p>提交问题后可在下方查看处理进度</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container stack-2">
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">提交报修</h2>
+      <p th:if="${okMsg}" style="color:#1f8a5b;margin-bottom:10px" th:text="${okMsg}"></p>
+      <p th:if="${errorMsg}" style="color:#c0392b;margin-bottom:10px" th:text="${errorMsg}"></p>
+      <form th:action="@{/repair/submit}" method="post">
+        <div class="form-group"><label>报修类别</label>
+          <select class="form-control" name="category">
+            <option>水电</option><option>门窗</option><option>家具</option><option>网络</option><option>其他</option>
+          </select>
+        </div>
+        <div class="form-group"><label>标题</label><input class="form-control" name="title" required></div>
+        <div class="form-group"><label>详细说明</label><textarea class="form-control" name="description" required></textarea></div>
+        <button class="btn btn-primary" type="submit">提交报修</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">我的工单</h2>
+      <table class="data">
+        <thead><tr><th>标题</th><th>类别</th><th>状态</th><th>时间</th></tr></thead>
+        <tbody>
+          <tr th:each="o : ${orders}">
+            <td th:text="${o.title}">标题</td>
+            <td th:text="${o.category}">类别</td>
+            <td>
+              <span class="status" th:classappend="${o.status==0}?' status-pending':(${o.status==1}?' status-doing':' status-done')"
+                    th:text="${o.status==0?'待处理':(o.status==1?'处理中':(o.status==2?'已完成':'已关闭'))}">状态</span>
+            </td>
+            <td th:text="${o.createTime != null ? #temporals.format(o.createTime,'MM-dd') : ''}">时间</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

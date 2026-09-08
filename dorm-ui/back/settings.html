@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系统设置 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-side">
+      <div class="side-brand">
+        <div class="mark">栖</div>
+        <div><strong>栖舍后台</strong><span>Dorm Admin</span></div>
+      </div>
+      <nav class="side-nav">
+        <div class="group">总览</div>
+        <a href="index.html">仪表盘</a>
+        <div class="group">宿舍资源</div>
+        <a href="building.html">楼栋管理</a>
+        <a href="room.html">房间管理</a>
+        <a href="bed.html">床位入住</a>
+        <div class="group">人员</div>
+        <a href="student.html">学生管理</a>
+        <a href="teacher.html">教师管理</a>
+        <a href="user.html">账号管理</a>
+        <div class="group">日常事务</div>
+        <a href="notice.html">公告管理</a>
+        <a href="repair.html">报修工单</a>
+        <a href="leave.html">请假晚归</a>
+        <a href="visitor.html">访客登记</a>
+        <a href="hygiene.html">卫生检查</a>
+        <div class="group">系统</div>
+        <a class="active" href="settings.html">系统设置</a>
+        <a href="../front/index.html" target="_blank">打开前台</a>
+        <a href="login.html">退出登录</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-top"><h1>系统设置</h1></div>
+      <div class="panel" style="max-width:640px">
+        <form data-demo data-success="设置已保存">
+          <div class="form-group">
+            <label>站点名称</label>
+            <input class="form-control" value="大学宿舍管理系统">
+          </div>
+          <div class="form-group">
+            <label>门禁时间</label>
+            <input class="form-control" value="23:00">
+          </div>
+          <div class="form-group">
+            <label>宿管服务热线</label>
+            <input class="form-control" value="400-800-2026">
+          </div>
+          <div class="form-group">
+            <label>开放前台注册</label>
+            <select class="form-control">
+              <option selected>是</option>
+              <option>否</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">保存设置</button>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script src="../js/common.js"></script>
+</body>
+</html>

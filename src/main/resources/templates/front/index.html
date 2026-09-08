@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>栖舍 · 大学宿舍管理系统</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" th:href="@{/}">
+        <div class="brand-mark">栖</div>
+        <div class="brand-text">
+          <strong>栖舍</strong>
+          <span>大学宿舍管理系统</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a th:href="@{/}" th:classappend="${navActive=='home'}?' active'">首页</a>
+        <a th:href="@{/notices}" th:classappend="${navActive=='notices'}?' active'">公告</a>
+        <a th:href="@{/my-dorm}" th:classappend="${navActive=='dorm'}?' active'">我的宿舍</a>
+        <a th:href="@{/repair}" th:classappend="${navActive=='repair'}?' active'">报修</a>
+        <a th:href="@{/leave}" th:classappend="${navActive=='leave'}?' active'">请假</a>
+        <a th:href="@{/visitor}" th:classappend="${navActive=='visitor'}?' active'">访客</a>
+        <a th:href="@{/guide}" th:classappend="${navActive=='guide'}?' active'">入住指南</a>
+      </nav>
+      <div class="nav-actions">
+        <th:block sec:authorize="isAuthenticated()">
+          <a class="btn btn-ghost btn-sm" th:href="@{/profile}" th:text="${loginUser != null ? loginUser.realName : '个人中心'}">个人中心</a>
+          <a class="btn btn-primary btn-sm" th:href="@{/logout}">退出</a>
+        </th:block>
+        <th:block sec:authorize="!isAuthenticated()">
+          <a class="btn btn-ghost btn-sm" th:href="@{/login}">登录</a>
+          <a class="btn btn-primary btn-sm" th:href="@{/register}">注册</a>
+        </th:block>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-copy">
+          <div class="hero-kicker">Campus Living · 2026</div>
+          <h1>栖舍</h1>
+          <p>查宿舍、看公告、报维修、请销假、登访客——把琐碎的住宿事务收进同一个清晨庭院。</p>
+          <div class="hero-cta">
+            <a class="btn btn-accent" th:href="@{/my-dorm}">查看我的宿舍</a>
+            <a class="btn btn-ghost" th:href="@{/repair}">我要报修</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="dorm-card">
+            <strong th:text="${configs != null and configs['hotline'] != null} ? ${configs['hotline']} : '400-800-2026'">400-800-2026</strong>
+            <span>宿管服务热线</span>
+          </div>
+          <div class="dorm-card-row">
+            <div class="dorm-card">
+              <strong th:text="${configs != null and configs['curfew_time'] != null} ? ${configs['curfew_time']} : '23:00'">23:00</strong>
+              <span>统一门禁</span>
+            </div>
+            <div class="dorm-card">
+              <strong th:text="${notices != null ? #lists.size(notices) : 0}">0</strong>
+              <span>最新公告</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>常用服务</h2>
+            <p>学生端高频入口，点开即可办理</p>
+          </div>
+        </div>
+        <div class="service-grid">
+          <a class="service-item" th:href="@{/my-dorm}"><div class="service-icon">🛏️</div><h3>我的宿舍</h3><p>床位、室友、卫生评分一目了然</p></a>
+          <a class="service-item" th:href="@{/repair}"><div class="service-icon">🔧</div><h3>在线报修</h3><p>水电门窗网络问题快速提交</p></a>
+          <a class="service-item" th:href="@{/leave}"><div class="service-icon">🌙</div><h3>请假晚归</h3><p>在线申请，辅导员审核进度可查</p></a>
+          <a class="service-item" th:href="@{/visitor}"><div class="service-icon">🚪</div><h3>访客登记</h3><p>家长探望、同学来访线上登记</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>最新公告</h2>
+            <p>宿管中心与后勤处发布</p>
+          </div>
+          <a th:href="@{/notices}">全部公告 →</a>
+        </div>
+        <div class="notice-list" th:if="${notices != null and !notices.isEmpty()}">
+          <a class="notice-item" th:each="n : ${notices}" th:href="@{/notice/{id}(id=${n.id})}">
+            <span class="tag" th:classappend="${n.category=='安全'} ? ' tag-safe' : (${n.category=='活动'} ? ' tag-event' : ' tag-info')" th:text="${n.category}">通知</span>
+            <div>
+              <h3 th:text="${n.title}">标题</h3>
+              <div class="meta" th:text="${n.publisher} + (${n.isTop==1} ? ' · 置顶' : '')">发布人</div>
+            </div>
+            <time th:text="${n.createTime != null ? #temporals.format(n.createTime,'MM-dd') : ''}">03-10</time>
+          </a>
+        </div>
+        <p class="empty" th:if="${notices == null or notices.isEmpty()}">暂无公告</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">栖舍 · 大学宿舍管理系统</div>
+        <div th:text="'服务热线 ' + ${(configs != null and configs['hotline'] != null) ? configs['hotline'] : '400-800-2026'} + ' · 门禁 ' + ${(configs != null and configs['curfew_time'] != null) ? configs['curfew_time'] : '23:00'}">服务热线</div>
+      </div>
+      <div><a th:href="@{/admin/login}">管理后台入口</a></div>
+    </div>
+  </footer>
+</body>
+</html>

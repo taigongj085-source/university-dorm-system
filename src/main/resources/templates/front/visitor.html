@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>访客登记 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('visitor')}"></header>
+<div class="container page-banner"><h1>访客登记</h1><p>家长探望或同学来访请提前登记</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container stack-2">
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">登记访客</h2>
+      <p th:if="${okMsg}" style="color:#1f8a5b" th:text="${okMsg}"></p>
+      <form th:action="@{/visitor/submit}" method="post">
+        <div class="form-group"><label>访客姓名</label><input class="form-control" name="visitorName" required></div>
+        <div class="form-row">
+          <div class="form-group"><label>访客电话</label><input class="form-control" name="visitorPhone"></div>
+          <div class="form-group"><label>证件后四位</label><input class="form-control" name="idCardTail" maxlength="4"></div>
+        </div>
+        <div class="form-group"><label>来访事由</label><input class="form-control" name="reason" required></div>
+        <div class="form-group"><label>预计来访时间</label><input class="form-control" type="datetime-local" name="visitTime"></div>
+        <button class="btn btn-primary" type="submit">提交登记</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">我的访客记录</h2>
+      <table class="data">
+        <thead><tr><th>访客</th><th>事由</th><th>状态</th><th>时间</th></tr></thead>
+        <tbody>
+          <tr th:each="r : ${records}">
+            <td th:text="${r.visitorName}">访客</td>
+            <td th:text="${r.reason}">事由</td>
+            <td th:text="${r.status==0?'在访':(r.status==1?'已离开':'已取消')}">状态</td>
+            <td th:text="${r.visitTime != null ? #temporals.format(r.visitTime,'MM-dd HH:mm') : ''}">时间</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('profile')}"></header>
+<div class="container page-banner"><h1>个人中心</h1><p>维护基本资料与账号安全</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container" style="max-width:640px">
+    <div class="card">
+      <p th:if="${okMsg}" style="color:#1f8a5b" th:text="${okMsg}"></p>
+      <p th:if="${errorMsg}" style="color:#c0392b" th:text="${errorMsg}"></p>
+      <form th:action="@{/profile/save}" method="post">
+        <div class="form-row">
+          <div class="form-group"><label>姓名</label><input class="form-control" name="realName" th:value="${user.realName}"></div>
+          <div class="form-group"><label>手机号</label><input class="form-control" name="phone" th:value="${user.phone}"></div>
+        </div>
+        <div class="form-group"><label>邮箱</label><input class="form-control" name="email" th:value="${user.email}"></div>
+        <div class="form-group"><label>新密码</label><input class="form-control" type="password" name="newPassword" placeholder="不修改请留空"></div>
+        <button class="btn btn-primary" type="submit">保存修改</button>
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>

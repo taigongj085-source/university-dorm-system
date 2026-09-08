@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卫生检查 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('hygiene')}"></header>
+<div class="container page-banner"><h1>卫生检查记录</h1><p>本宿舍近期检查成绩</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container">
+    <div class="card">
+      <table class="data">
+        <thead><tr><th>日期</th><th>得分</th><th>等级</th><th>检查人</th><th>评语</th></tr></thead>
+        <tbody>
+          <tr th:each="r : ${records}">
+            <td th:text="${r.checkDate}">日期</td>
+            <td th:text="${r.score}">分</td>
+            <td th:text="${r.levelLabel}">等级</td>
+            <td th:text="${r.checker}">检查人</td>
+            <td th:text="${r.remark}">评语</td>
+          </tr>
+          <tr th:if="${records == null or records.isEmpty()}"><td colspan="5" class="empty">暂无记录</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

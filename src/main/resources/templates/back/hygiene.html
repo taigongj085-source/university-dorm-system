@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>卫生检查 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('hygiene')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>卫生检查</h1></div>
+    <div class="panel">
+      <form class="form-grid" th:action="@{/admin/hygiene/save}" method="post">
+        <div class="form-group"><label>房间</label>
+          <select class="form-control" name="roomId" required>
+            <option th:each="r : ${rooms}" th:value="${r.id}" th:text="${'房间 '+r.roomNo}">房间</option>
+          </select>
+        </div>
+        <div class="form-group"><label>得分</label><input class="form-control" type="number" name="score" value="90"></div>
+        <div class="form-group"><label>等级</label>
+          <select class="form-control" name="levelLabel"><option>优秀</option><option>良好</option><option>合格</option><option>整改</option></select>
+        </div>
+        <div class="form-group"><label>检查人</label><input class="form-control" name="checker" value="宿管"></div>
+        <div class="form-group full"><label>评语</label><input class="form-control" name="remark"></div>
+        <div class="full"><button class="btn btn-primary" type="submit">录入</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <table class="data">
+        <thead><tr><th>房间ID</th><th>日期</th><th>得分</th><th>等级</th><th>检查人</th><th>评语</th></tr></thead>
+        <tbody>
+          <tr th:each="h : ${list}">
+            <td th:text="${h.roomId}">1</td>
+            <td th:text="${h.checkDate}">日期</td>
+            <td th:text="${h.score}">90</td>
+            <td th:text="${h.levelLabel}">良好</td>
+            <td th:text="${h.checker}">宿管</td>
+            <td th:text="${h.remark}">评语</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

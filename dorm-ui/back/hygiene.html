@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卫生检查 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a href="room.html">房间管理</a>
+      <a href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a href="visitor.html">访客登记</a>
+      <a class="active" href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>卫生检查</h1>
+      <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">录入成绩</button>
+    </div>
+    <div class="panel" id="editPanel" style="display:none">
+      <div class="panel-head"><h2>录入检查结果</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="卫生检查已保存">
+        <div class="form-group"><label>房间</label>
+          <select class="form-control"><option>梅园1号楼 301</option><option>兰园2号楼 201</option></select>
+        </div>
+        <div class="form-group"><label>检查日期</label><input class="form-control" type="date" value="2026-03-18"></div>
+        <div class="form-group"><label>得分</label><input class="form-control" type="number" value="90" min="0" max="100"></div>
+        <div class="form-group"><label>等级</label>
+          <select class="form-control"><option>优秀</option><option>良好</option><option>合格</option><option>整改</option></select>
+        </div>
+        <div class="form-group"><label>检查人</label><input class="form-control" value="刘阿姨"></div>
+        <div class="form-group full"><label>评语</label><textarea class="form-control" rows="3"></textarea></div>
+        <div class="full"><button class="btn btn-primary" type="submit">保存</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <div class="toolbar">
+        <select class="form-control"><option>全部楼栋</option><option>梅园1号楼</option><option>兰园2号楼</option></select>
+        <select class="form-control"><option>全部等级</option><option>优秀</option><option>良好</option><option>合格</option><option>整改</option></select>
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead><tr><th>房间</th><th>日期</th><th>得分</th><th>等级</th><th>检查人</th><th>评语</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>梅园1-301</td><td>2026-03-17</td><td>88</td>
+            <td><span class="badge badge-info">良好</span></td>
+            <td>刘阿姨</td><td>书桌略乱，建议每日整理。</td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+          <tr>
+            <td>梅园1-301</td><td>2026-03-10</td><td>96</td>
+            <td><span class="badge badge-ok">优秀</span></td>
+            <td>刘阿姨</td><td>地面整洁，物品摆放规范。</td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+          <tr>
+            <td>兰园2-201</td><td>2026-03-17</td><td>92</td>
+            <td><span class="badge badge-ok">优秀</span></td>
+            <td>赵阿姨</td><td>整体干净，阳台物品摆放有序。</td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">编辑</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

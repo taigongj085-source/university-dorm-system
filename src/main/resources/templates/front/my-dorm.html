@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的宿舍 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('dorm')}"></header>
+<div class="container page-banner"><h1>我的宿舍</h1><p>床位、室友与楼栋联系方式一览</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container" th:if="${dorm.assigned}">
+    <div class="dorm-board">
+      <div class="card">
+        <h2 style="font-family:var(--font-brand);font-size:24px;font-weight:400;margin-bottom:16px">入住信息</h2>
+        <div class="info-grid">
+          <div class="info-cell"><label>楼栋</label><strong th:text="${dorm.building.name}">楼栋</strong></div>
+          <div class="info-cell"><label>房间</label><strong th:text="${dorm.room.roomNo} + ' 室'">房间</strong></div>
+          <div class="info-cell"><label>床位</label><strong th:text="${dorm.myBed.bedNo} + ' 床'">床位</strong></div>
+          <div class="info-cell"><label>入住日期</label><strong th:text="${dorm.myBed.checkInDate}">日期</strong></div>
+          <div class="info-cell"><label>房间类型</label><strong th:text="${dorm.room.roomType}">类型</strong></div>
+          <div class="info-cell"><label>宿管电话</label><strong th:text="${dorm.building.managerPhone}">电话</strong></div>
+        </div>
+        <div style="margin-top:18px">
+          <h3 style="font-size:15px;margin-bottom:10px">床位示意</h3>
+          <div class="bed-map">
+            <div class="bed" th:each="row : ${dorm.roommates}" th:classappend="${row.bed.status==1}?' occupied'">
+              <div class="bed-no" th:text="${row.bed.bedNo}">A</div>
+              <div class="bed-user" th:text="${row.student != null ? row.student.name : '空闲'}">空闲</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 style="font-family:var(--font-brand);font-size:24px;font-weight:400;margin-bottom:16px">室友</h2>
+        <div class="roommate-list">
+          <div class="roommate" th:each="row : ${dorm.roommates}" th:if="${row.student != null}">
+            <div class="avatar">🧑‍🎓</div>
+            <div>
+              <div class="name" th:text="${row.student.name} + ' · ' + ${row.bed.bedNo} + ' 床'">姓名</div>
+              <div class="sub" th:text="${row.student.major} + ' · ' + ${row.student.className}">专业</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px" th:if="${dorm.hygiene != null and !dorm.hygiene.isEmpty()}">
+          <h3 style="font-size:15px;margin-bottom:8px">近期卫生</h3>
+          <div th:each="h : ${dorm.hygiene}" style="font-size:13px;color:var(--muted);margin-bottom:4px"
+               th:text="${h.checkDate} + ' · ' + ${h.score} + '分 · ' + ${h.levelLabel}">记录</div>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-sm" th:href="@{/repair}">本宿舍报修</a>
+          <a class="btn btn-ghost btn-sm" th:href="@{/leave}">登记晚归</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" th:if="${!dorm.assigned}">
+    <div class="card empty">尚未分配床位，请联系宿管老师。</div>
+  </div>
+</main>
+</body>
+</html>

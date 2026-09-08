@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-side" th:replace="~{back/fragments/side :: side('dashboard')}"></aside>
+    <main class="admin-main">
+      <div class="admin-top">
+        <h1>仪表盘</h1>
+        <div class="user" th:text="${loginUser != null ? '你好，' + loginUser.realName : '管理员'}">你好</div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="label">在住学生</div><div class="num" th:text="${stats.students}">0</div></div>
+        <div class="stat-card"><div class="label">宿舍楼栋</div><div class="num" th:text="${stats.buildings}">0</div></div>
+        <div class="stat-card"><div class="label">待处理报修</div><div class="num" th:text="${stats.repairs}">0</div></div>
+        <div class="stat-card"><div class="label">待审请假</div><div class="num" th:text="${stats.leaves}">0</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>快捷入口</h2></div>
+        <div class="quick-links">
+          <a th:href="@{/admin/buildings}">楼栋管理<span>楼栋基础信息</span></a>
+          <a th:href="@{/admin/beds}">床位入住<span>分配 / 退宿</span></a>
+          <a th:href="@{/admin/repairs}">报修处理<span>工单派发与办结</span></a>
+          <a th:href="@{/admin/settings}">系统设置<span>门禁、热线、注册开关</span></a>
+        </div>
+      </div>
+      <div class="split-2">
+        <div class="panel">
+          <div class="panel-head"><h2>最新报修</h2><a th:href="@{/admin/repairs}">全部</a></div>
+          <table class="data">
+            <thead><tr><th>标题</th><th>状态</th><th>时间</th></tr></thead>
+            <tbody>
+              <tr th:each="r : ${latestRepairs}">
+                <td th:text="${r.title}">标题</td>
+                <td th:text="${r.status==0?'待处理':(r.status==1?'处理中':(r.status==2?'已完成':'已关闭'))}">状态</td>
+                <td th:text="${r.createTime != null ? #temporals.format(r.createTime,'MM-dd') : ''}">时间</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>最新公告</h2><a th:href="@{/admin/notices}">全部</a></div>
+          <table class="data">
+            <thead><tr><th>标题</th><th>分类</th><th>时间</th></tr></thead>
+            <tbody>
+              <tr th:each="n : ${latestNotices}">
+                <td th:text="${n.title}">标题</td>
+                <td th:text="${n.category}">分类</td>
+                <td th:text="${n.createTime != null ? #temporals.format(n.createTime,'MM-dd') : ''}">时间</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

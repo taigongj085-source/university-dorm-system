@@ -1,0 +1,47 @@
+server:
+  port: 8088
+  servlet:
+    session:
+      timeout: 2h
+
+spring:
+  application:
+    name: university-dorm-system
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/university_dorm?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 2
+      timeout: 3s
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+dorm:
+  redis:
+    stats-key: dorm:stats
+    notices-key: dorm:home:notices
+    cache-ttl-seconds: 60

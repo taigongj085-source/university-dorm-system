@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>请假晚归 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('leave')}"></header>
+<div class="container page-banner"><h1>请假 / 晚归登记</h1><p>晚归请提前登记</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container stack-2">
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">新建申请</h2>
+      <p th:if="${okMsg}" style="color:#1f8a5b" th:text="${okMsg}"></p>
+      <form th:action="@{/leave/submit}" method="post">
+        <div class="form-group"><label>类型</label>
+          <select class="form-control" name="leaveType">
+            <option value="1">请假</option><option value="2">晚归</option><option value="3">临时外出</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>开始时间</label><input class="form-control" type="datetime-local" name="startTime" required></div>
+          <div class="form-group"><label>结束时间</label><input class="form-control" type="datetime-local" name="endTime"></div>
+        </div>
+        <div class="form-group"><label>事由</label><textarea class="form-control" name="reason" required></textarea></div>
+        <button class="btn btn-primary" type="submit">提交审核</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2 style="font-family:var(--font-brand);font-size:22px;font-weight:400;margin-bottom:16px">申请记录</h2>
+      <table class="data">
+        <thead><tr><th>类型</th><th>事由</th><th>状态</th><th>时间</th></tr></thead>
+        <tbody>
+          <tr th:each="r : ${records}">
+            <td th:text="${r.leaveType==1?'请假':(r.leaveType==2?'晚归':'临时外出')}">类型</td>
+            <td th:text="${r.reason}">事由</td>
+            <td th:text="${r.status==0?'待审核':(r.status==1?'已通过':'已驳回')}">状态</td>
+            <td th:text="${r.startTime != null ? #temporals.format(r.startTime,'MM-dd HH:mm') : ''}">时间</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>

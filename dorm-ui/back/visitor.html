@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>访客登记 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a href="room.html">房间管理</a>
+      <a href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a class="active" href="visitor.html">访客登记</a>
+      <a href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>访客登记</h1>
+      <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">登记访客</button>
+    </div>
+    <div class="panel" id="editPanel" style="display:none">
+      <div class="panel-head"><h2>登记访客</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="访客已登记">
+        <div class="form-group"><label>被访学生</label>
+          <select class="form-control"><option>张晓明</option><option>李思雨</option><option>陈浩</option></select>
+        </div>
+        <div class="form-group"><label>访客姓名</label><input class="form-control" required></div>
+        <div class="form-group"><label>访客电话</label><input class="form-control"></div>
+        <div class="form-group"><label>证件后四位</label><input class="form-control" maxlength="4"></div>
+        <div class="form-group full"><label>来访事由</label><input class="form-control" required></div>
+        <div class="form-group"><label>来访时间</label><input class="form-control" type="datetime-local" value="2026-03-18T10:00"></div>
+        <div class="full"><button class="btn btn-primary" type="submit">保存</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <div class="toolbar">
+        <select class="form-control"><option>全部状态</option><option>在访</option><option>已离开</option></select>
+        <input class="form-control" placeholder="访客姓名 / 学生">
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead><tr><th>访客</th><th>电话</th><th>被访学生</th><th>事由</th><th>来访时间</th><th>离开时间</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>周小艺</td><td>13600002222</td><td>李思雨</td><td>同学串门</td><td>03-18 10:00</td><td>—</td>
+            <td><span class="badge badge-info">在访</span></td>
+            <td class="actions"><button class="btn btn-primary btn-sm" type="button" data-confirm="确认登记离开？">登记离开</button></td>
+          </tr>
+          <tr>
+            <td>王建国</td><td>13600001111</td><td>张晓明</td><td>家长探望</td><td>03-16 14:20</td><td>03-16 16:05</td>
+            <td><span class="badge badge-ok">已离开</span></td>
+            <td class="actions"><button class="btn btn-ghost btn-sm" type="button">详情</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

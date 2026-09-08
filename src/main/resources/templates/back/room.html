@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>房间管理 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('room')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>房间管理</h1></div>
+    <div class="panel">
+      <form class="form-grid" th:action="@{/admin/rooms/save}" method="post">
+        <div class="form-group"><label>楼栋</label>
+          <select class="form-control" name="buildingId" required>
+            <option th:each="b : ${buildings}" th:value="${b.id}" th:text="${b.name}">楼栋</option>
+          </select>
+        </div>
+        <div class="form-group"><label>房间号</label><input class="form-control" name="roomNo" required></div>
+        <div class="form-group"><label>楼层</label><input class="form-control" type="number" name="floorNo" value="1"></div>
+        <div class="form-group"><label>床位数</label><input class="form-control" type="number" name="bedCount" value="4"></div>
+        <div class="form-group"><label>类型</label><input class="form-control" name="roomType" value="标准四人间"></div>
+        <input type="hidden" name="status" value="1">
+        <div class="full"><button class="btn btn-primary" type="submit">新增房间（自动生成床位）</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <table class="data">
+        <thead><tr><th>ID</th><th>楼栋ID</th><th>房间</th><th>楼层</th><th>床位</th><th>类型</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr th:each="r : ${list}">
+            <td th:text="${r.id}">1</td>
+            <td th:text="${r.buildingId}">1</td>
+            <td th:text="${r.roomNo}">301</td>
+            <td th:text="${r.floorNo}">3</td>
+            <td th:text="${r.bedCount}">4</td>
+            <td th:text="${r.roomType}">类型</td>
+            <td th:text="${r.status==1?'可用':(r.status==0?'维修中':'停用')}">可用</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

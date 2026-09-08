@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>床位入住 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('bed')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>床位入住</h1></div>
+    <div class="panel">
+      <form class="toolbar" method="get" th:action="@{/admin/beds}">
+        <select class="form-control" name="roomId">
+          <option value="">全部房间</option>
+          <option th:each="r : ${rooms}" th:value="${r.id}" th:selected="${roomId==r.id}" th:text="${'房间 '+r.roomNo}">房间</option>
+        </select>
+        <button class="btn btn-primary btn-sm" type="submit">筛选</button>
+      </form>
+      <table class="data">
+        <thead><tr><th>床位ID</th><th>房间ID</th><th>床号</th><th>当前学生</th><th>状态</th><th>分配</th></tr></thead>
+        <tbody>
+          <tr th:each="b : ${list}">
+            <td th:text="${b.id}">1</td>
+            <td th:text="${b.roomId}">1</td>
+            <td th:text="${b.bedNo}">A</td>
+            <td th:text="${b.studentId}">-</td>
+            <td th:text="${b.status==1?'已入住':'空闲'}">空闲</td>
+            <td>
+              <form th:action="@{/admin/beds/assign}" method="post" style="display:flex;gap:6px;align-items:center">
+                <input type="hidden" name="bedId" th:value="${b.id}">
+                <select class="form-control" name="studentId" style="min-width:140px;height:32px">
+                  <option value="">退宿/空闲</option>
+                  <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.studentNo + ' ' + s.name}">学生</option>
+                </select>
+                <button class="btn btn-ghost btn-sm" type="submit">保存</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

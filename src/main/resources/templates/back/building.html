@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>楼栋管理 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('building')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>楼栋管理</h1></div>
+    <div class="panel">
+      <form class="form-grid" th:action="@{/admin/buildings/save}" method="post">
+        <div class="form-group"><label>名称</label><input class="form-control" name="name" required></div>
+        <div class="form-group"><label>编号</label><input class="form-control" name="code" required></div>
+        <div class="form-group"><label>类型</label>
+          <select class="form-control" name="genderType"><option value="1">男寝</option><option value="2">女寝</option><option value="3">混合</option></select>
+        </div>
+        <div class="form-group"><label>楼层</label><input class="form-control" type="number" name="floors" value="6"></div>
+        <div class="form-group"><label>宿管</label><input class="form-control" name="managerName"></div>
+        <div class="form-group"><label>电话</label><input class="form-control" name="managerPhone"></div>
+        <div class="form-group full"><label>地址</label><input class="form-control" name="address"></div>
+        <input type="hidden" name="status" value="1">
+        <div class="full"><button class="btn btn-primary" type="submit">新增楼栋</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <table class="data">
+        <thead><tr><th>编号</th><th>名称</th><th>类型</th><th>楼层</th><th>宿管</th><th>电话</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr th:each="b : ${list}">
+            <td th:text="${b.code}">code</td>
+            <td th:text="${b.name}">name</td>
+            <td th:text="${b.genderType==1?'男寝':(b.genderType==2?'女寝':'混合')}">类型</td>
+            <td th:text="${b.floors}">6</td>
+            <td th:text="${b.managerName}">宿管</td>
+            <td th:text="${b.managerPhone}">电话</td>
+            <td>
+              <form th:action="@{/admin/buildings/delete/{id}(id=${b.id})}" method="post" style="display:inline">
+                <button class="btn btn-danger btn-sm" type="submit">删除</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

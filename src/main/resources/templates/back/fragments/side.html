@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<body>
+<aside class="admin-side" th:fragment="side(menu)">
+  <div class="side-brand">
+    <div class="mark">栖</div>
+    <div><strong>栖舍后台</strong><span>Dorm Admin</span></div>
+  </div>
+  <nav class="side-nav">
+    <div class="group">总览</div>
+    <a th:href="@{/admin}" th:classappend="${menu=='dashboard'}?' active'">仪表盘</a>
+    <div class="group">宿舍资源</div>
+    <a th:href="@{/admin/buildings}" th:classappend="${menu=='building'}?' active'">楼栋管理</a>
+    <a th:href="@{/admin/rooms}" th:classappend="${menu=='room'}?' active'">房间管理</a>
+    <a th:href="@{/admin/beds}" th:classappend="${menu=='bed'}?' active'">床位入住</a>
+    <div class="group">人员</div>
+    <a th:href="@{/admin/students}" th:classappend="${menu=='student'}?' active'">学生管理</a>
+    <a th:href="@{/admin/teachers}" th:classappend="${menu=='teacher'}?' active'">教师管理</a>
+    <a th:href="@{/admin/users}" th:classappend="${menu=='user'}?' active'">账号管理</a>
+    <div class="group">日常事务</div>
+    <a th:href="@{/admin/notices}" th:classappend="${menu=='notice'}?' active'">公告管理</a>
+    <a th:href="@{/admin/repairs}" th:classappend="${menu=='repair'}?' active'">报修工单</a>
+    <a th:href="@{/admin/leaves}" th:classappend="${menu=='leave'}?' active'">请假晚归</a>
+    <a th:href="@{/admin/visitors}" th:classappend="${menu=='visitor'}?' active'">访客登记</a>
+    <a th:href="@{/admin/hygiene}" th:classappend="${menu=='hygiene'}?' active'">卫生检查</a>
+    <div class="group">系统</div>
+    <a th:href="@{/admin/settings}" th:classappend="${menu=='settings'}?' active'">系统设置</a>
+    <a th:href="@{/}" target="_blank">打开前台</a>
+    <a th:href="@{/logout}">退出登录</a>
+  </nav>
+</aside>
+</body>
+</html>

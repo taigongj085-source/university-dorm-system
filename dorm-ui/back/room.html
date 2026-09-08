@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>房间管理 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a class="active" href="room.html">房间管理</a>
+      <a href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a href="visitor.html">访客登记</a>
+      <a href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>房间管理</h1>
+      <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">新增房间</button>
+    </div>
+
+    <div class="panel" id="editPanel" style="display:none">
+      <div class="panel-head"><h2>编辑房间</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="房间信息已保存">
+        <div class="form-group"><label>所属楼栋</label>
+          <select class="form-control"><option>梅园1号楼</option><option>兰园2号楼</option><option>竹园3号楼</option></select>
+        </div>
+        <div class="form-group"><label>房间号</label><input class="form-control" value="301" required></div>
+        <div class="form-group"><label>楼层</label><input class="form-control" type="number" value="3"></div>
+        <div class="form-group"><label>床位数</label><input class="form-control" type="number" value="4"></div>
+        <div class="form-group"><label>房间类型</label><input class="form-control" value="标准四人间"></div>
+        <div class="form-group"><label>状态</label>
+          <select class="form-control"><option>可用</option><option>维修中</option><option>停用</option></select>
+        </div>
+        <div class="full"><button class="btn btn-primary" type="submit">保存</button></div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <select class="form-control"><option>全部楼栋</option><option>梅园1号楼</option><option>兰园2号楼</option></select>
+        <input class="form-control" placeholder="房间号">
+        <select class="form-control"><option>全部状态</option><option>可用</option><option>维修中</option></select>
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead>
+          <tr><th>楼栋</th><th>房间号</th><th>楼层</th><th>类型</th><th>床位</th><th>已住</th><th>状态</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>梅园1号楼</td><td>301</td><td>3</td><td>标准四人间</td><td>4</td><td>2</td>
+            <td><span class="badge badge-ok">可用</span></td>
+            <td class="actions">
+              <a class="btn btn-ghost btn-sm" href="bed.html">床位</a>
+              <button class="btn btn-ghost btn-sm" type="button">编辑</button>
+            </td>
+          </tr>
+          <tr>
+            <td>梅园1号楼</td><td>302</td><td>3</td><td>标准四人间</td><td>4</td><td>0</td>
+            <td><span class="badge badge-ok">可用</span></td>
+            <td class="actions">
+              <a class="btn btn-ghost btn-sm" href="bed.html">床位</a>
+              <button class="btn btn-ghost btn-sm" type="button">编辑</button>
+            </td>
+          </tr>
+          <tr>
+            <td>兰园2号楼</td><td>201</td><td>2</td><td>标准四人间</td><td>4</td><td>1</td>
+            <td><span class="badge badge-ok">可用</span></td>
+            <td class="actions">
+              <a class="btn btn-ghost btn-sm" href="bed.html">床位</a>
+              <button class="btn btn-ghost btn-sm" type="button">编辑</button>
+            </td>
+          </tr>
+          <tr>
+            <td>竹园3号楼</td><td>501</td><td>5</td><td>六人间</td><td>6</td><td>0</td>
+            <td><span class="badge badge-warn">维修中</span></td>
+            <td class="actions">
+              <a class="btn btn-ghost btn-sm" href="bed.html">床位</a>
+              <button class="btn btn-ghost btn-sm" type="button">编辑</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pager"><span>共 6 条</span><button class="btn btn-ghost btn-sm" type="button">上一页</button><button class="btn btn-ghost btn-sm" type="button">下一页</button></div>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${notice != null ? notice.title : '公告详情'}">公告详情</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('notices')}"></header>
+<main class="section">
+  <div class="container" style="max-width:820px" th:if="${notice != null}">
+    <div class="card">
+      <span class="tag tag-info" th:text="${notice.category}">分类</span>
+      <h1 style="font-family:var(--font-brand);font-size:32px;font-weight:400;margin:14px 0 10px" th:text="${notice.title}">标题</h1>
+      <div style="color:var(--muted);font-size:13px;margin-bottom:22px"
+           th:text="${notice.publisher} + ' · ' + (${notice.createTime != null ? #temporals.format(notice.createTime,'yyyy-MM-dd') : ''})">meta</div>
+      <div style="font-size:15px;line-height:1.9;color:var(--ink-soft);white-space:pre-wrap" th:text="${notice.content}">内容</div>
+      <p style="margin-top:20px"><a th:href="@{/notices}">← 返回列表</a></p>
+    </div>
+  </div>
+  <div class="container" th:if="${notice == null}"><div class="empty">公告不存在</div></div>
+</main>
+</body>
+</html>

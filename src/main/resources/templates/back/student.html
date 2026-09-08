@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>学生管理 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('student')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>学生管理</h1></div>
+    <div class="panel">
+      <form class="form-grid" th:action="@{/admin/students/save}" method="post">
+        <div class="form-group"><label>学号</label><input class="form-control" name="studentNo" required></div>
+        <div class="form-group"><label>姓名</label><input class="form-control" name="name" required></div>
+        <div class="form-group"><label>性别</label><select class="form-control" name="gender"><option value="1">男</option><option value="2">女</option></select></div>
+        <div class="form-group"><label>手机</label><input class="form-control" name="phone"></div>
+        <div class="form-group"><label>学院</label><input class="form-control" name="college"></div>
+        <div class="form-group"><label>专业</label><input class="form-control" name="major"></div>
+        <div class="form-group"><label>年级</label><input class="form-control" name="grade"></div>
+        <div class="form-group"><label>班级</label><input class="form-control" name="className"></div>
+        <div class="form-group"><label>辅导员</label>
+          <select class="form-control" name="teacherId">
+            <option value="">未指定</option>
+            <option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.name}">教师</option>
+          </select>
+        </div>
+        <input type="hidden" name="status" value="1">
+        <div class="full"><button class="btn btn-primary" type="submit">新增学生</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <table class="data">
+        <thead><tr><th>学号</th><th>姓名</th><th>学院</th><th>专业</th><th>班级</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr th:each="s : ${list}">
+            <td th:text="${s.studentNo}">学号</td>
+            <td th:text="${s.name}">姓名</td>
+            <td th:text="${s.college}">学院</td>
+            <td th:text="${s.major}">专业</td>
+            <td th:text="${s.className}">班级</td>
+            <td th:text="${s.status==1?'在校':'离校'}">在校</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

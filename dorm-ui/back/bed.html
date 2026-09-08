@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>床位入住 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-side">
+    <div class="side-brand"><div class="mark">栖</div><div><strong>栖舍后台</strong><span>Dorm Admin</span></div></div>
+    <nav class="side-nav">
+      <div class="group">总览</div>
+      <a href="index.html">工作台</a>
+      <div class="group">宿舍资源</div>
+      <a href="building.html">楼栋管理</a>
+      <a href="room.html">房间管理</a>
+      <a class="active" href="bed.html">床位入住</a>
+      <div class="group">人员</div>
+      <a href="student.html">学生管理</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="user.html">账号管理</a>
+      <div class="group">日常事务</div>
+      <a href="notice.html">公告管理</a>
+      <a href="repair.html">报修工单</a>
+      <a href="leave.html">请假晚归</a>
+      <a href="visitor.html">访客登记</a>
+      <a href="hygiene.html">卫生检查</a>
+      <div class="group">系统</div>
+      <a href="settings.html">⚙️ 系统设置</a>
+      <a href="../front/index.html" target="_blank">打开前台</a>
+      <a href="login.html">退出登录</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <h1>床位入住</h1>
+      <button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">办理入住</button>
+    </div>
+
+    <div class="panel" id="editPanel" style="display:none">
+      <div class="panel-head"><h2>办理入住 / 调宿</h2><button class="btn btn-ghost btn-sm" type="button" onclick="this.closest('.panel').style.display='none'">收起</button></div>
+      <form class="form-grid" data-demo data-success="入住办理成功">
+        <div class="form-group"><label>学生</label>
+          <select class="form-control"><option>2021001 张晓明</option><option>2021002 李思雨</option><option>2021003 陈浩</option></select>
+        </div>
+        <div class="form-group"><label>目标房间</label>
+          <select class="form-control"><option>梅园1号楼 301</option><option>梅园1号楼 302</option><option>兰园2号楼 201</option></select>
+        </div>
+        <div class="form-group"><label>床位号</label>
+          <select class="form-control"><option>C（空闲）</option><option>D（空闲）</option></select>
+        </div>
+        <div class="form-group"><label>入住日期</label><input class="form-control" type="date" value="2026-03-18"></div>
+        <div class="full"><button class="btn btn-primary" type="submit">确认入住</button></div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <select class="form-control"><option>梅园1号楼 301</option><option>兰园2号楼 201</option></select>
+        <select class="form-control"><option>全部床位</option><option>空闲</option><option>已入住</option></select>
+        <button class="btn btn-ghost btn-sm" type="button">查询</button>
+      </div>
+      <table class="data">
+        <thead>
+          <tr><th>房间</th><th>床位</th><th>学号</th><th>姓名</th><th>入住日期</th><th>状态</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>梅园1号楼 301</td><td>A</td><td>2021001</td><td>张晓明</td><td>2024-09-01</td>
+            <td><span class="badge badge-ok">已入住</span></td>
+            <td class="actions"><button class="btn btn-danger btn-sm" type="button" data-confirm="确认办理退宿？">退宿</button></td>
+          </tr>
+          <tr>
+            <td>梅园1号楼 301</td><td>B</td><td>2021003</td><td>陈浩</td><td>2024-09-01</td>
+            <td><span class="badge badge-ok">已入住</span></td>
+            <td class="actions"><button class="btn btn-danger btn-sm" type="button" data-confirm="确认办理退宿？">退宿</button></td>
+          </tr>
+          <tr>
+            <td>梅园1号楼 301</td><td>C</td><td>—</td><td>—</td><td>—</td>
+            <td><span class="badge badge-off">空闲</span></td>
+            <td class="actions"><button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">分配</button></td>
+          </tr>
+          <tr>
+            <td>梅园1号楼 301</td><td>D</td><td>—</td><td>—</td><td>—</td>
+            <td><span class="badge badge-off">空闲</span></td>
+            <td class="actions"><button class="btn btn-primary btn-sm" type="button" onclick="document.getElementById('editPanel').style.display='block'">分配</button></td>
+          </tr>
+          <tr>
+            <td>兰园2号楼 201</td><td>A</td><td>2021002</td><td>李思雨</td><td>2024-09-01</td>
+            <td><span class="badge badge-ok">已入住</span></td>
+            <td class="actions"><button class="btn btn-danger btn-sm" type="button" data-confirm="确认办理退宿？">退宿</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="../js/common.js"></script>
+</body>
+</html>

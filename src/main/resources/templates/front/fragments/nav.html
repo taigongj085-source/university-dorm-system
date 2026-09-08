@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zh-CN">
+<body>
+<header class="site-header" th:fragment="nav(active)">
+  <div class="container nav-inner">
+    <a class="brand" th:href="@{/}">
+      <div class="brand-mark">栖</div>
+      <div class="brand-text"><strong>栖舍</strong><span>大学宿舍管理系统</span></div>
+    </a>
+    <nav class="nav-links">
+      <a th:href="@{/}" th:classappend="${active=='home'}?' active'">首页</a>
+      <a th:href="@{/notices}" th:classappend="${active=='notices'}?' active'">公告</a>
+      <a th:href="@{/my-dorm}" th:classappend="${active=='dorm'}?' active'">我的宿舍</a>
+      <a th:href="@{/repair}" th:classappend="${active=='repair'}?' active'">报修</a>
+      <a th:href="@{/leave}" th:classappend="${active=='leave'}?' active'">请假</a>
+      <a th:href="@{/visitor}" th:classappend="${active=='visitor'}?' active'">访客</a>
+      <a th:href="@{/guide}" th:classappend="${active=='guide'}?' active'">入住指南</a>
+    </nav>
+    <div class="nav-actions">
+      <th:block sec:authorize="isAuthenticated()">
+        <a class="btn btn-ghost btn-sm" th:href="@{/profile}">个人中心</a>
+        <a class="btn btn-primary btn-sm" th:href="@{/logout}">退出</a>
+      </th:block>
+      <th:block sec:authorize="!isAuthenticated()">
+        <a class="btn btn-ghost btn-sm" th:href="@{/login}">登录</a>
+        <a class="btn btn-primary btn-sm" th:href="@{/register}">注册</a>
+      </th:block>
+    </div>
+  </div>
+</header>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>系统设置 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('settings')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>系统设置</h1></div>
+    <div class="panel" style="max-width:640px">
+      <form th:action="@{/admin/settings/save}" method="post">
+        <div class="form-group"><label>站点名称</label>
+          <input class="form-control" name="siteName" th:value="${configs['site_name']}">
+        </div>
+        <div class="form-group"><label>门禁时间</label>
+          <input class="form-control" name="curfewTime" th:value="${configs['curfew_time']}">
+        </div>
+        <div class="form-group"><label>宿管服务热线</label>
+          <input class="form-control" name="hotline" th:value="${configs['hotline']}">
+        </div>
+        <div class="form-group"><label>开放前台注册</label>
+          <select class="form-control" name="allowRegister">
+            <option value="1" th:selected="${configs['allow_register']=='1'}">是</option>
+            <option value="0" th:selected="${configs['allow_register']=='0'}">否</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">保存设置</button>
+      </form>
+    </div>
+  </main>
+</div>
+</body>
+</html>

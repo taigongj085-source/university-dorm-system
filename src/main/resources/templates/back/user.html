@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>账号管理 · 栖舍后台</title>
+  <link th:href="@{/css/admin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside th:replace="~{back/fragments/side :: side('user')}"></aside>
+  <main class="admin-main">
+    <div class="admin-top"><h1>账号管理</h1></div>
+    <div class="panel">
+      <p th:if="${okMsg}" style="color:#1f8a5b" th:text="${okMsg}"></p>
+      <table class="data">
+        <thead><tr><th>用户名</th><th>姓名</th><th>角色</th><th>手机</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr th:each="u : ${list}">
+            <td th:text="${u.username}">user</td>
+            <td th:text="${u.realName}">name</td>
+            <td th:text="${u.role}">STUDENT</td>
+            <td th:text="${u.phone}">phone</td>
+            <td th:text="${u.status==1?'正常':'禁用'}">正常</td>
+            <td class="actions">
+              <form th:action="@{/admin/users/reset/{id}(id=${u.id})}" method="post" style="display:inline">
+                <button class="btn btn-ghost btn-sm" type="submit">重置密码</button>
+              </form>
+              <form th:if="${u.role != 'ADMIN'}" th:action="@{/admin/users/toggle/{id}(id=${u.id})}" method="post" style="display:inline">
+                <button class="btn btn-danger btn-sm" type="submit" th:text="${u.status==1?'禁用':'启用'}">禁用</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘 · 栖舍后台</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-side">
+      <div class="side-brand">
+        <div class="mark">栖</div>
+        <div>
+          <strong>栖舍后台</strong>
+          <span>Dorm Admin</span>
+        </div>
+      </div>
+      <nav class="side-nav">
+        <div class="group">总览</div>
+        <a class="active" href="index.html">仪表盘</a>
+        <div class="group">宿舍资源</div>
+        <a href="building.html">楼栋管理</a>
+        <a href="room.html">房间管理</a>
+        <a href="bed.html">床位入住</a>
+        <div class="group">人员</div>
+        <a href="student.html">学生管理</a>
+        <a href="teacher.html">教师管理</a>
+        <a href="user.html">账号管理</a>
+        <div class="group">日常事务</div>
+        <a href="notice.html">公告管理</a>
+        <a href="repair.html">报修工单</a>
+        <a href="leave.html">请假晚归</a>
+        <a href="visitor.html">访客登记</a>
+        <a href="hygiene.html">卫生检查</a>
+        <div class="group">系统</div>
+        <a href="settings.html">系统设置</a>
+        <a href="../front/index.html" target="_blank">打开前台</a>
+        <a href="login.html">退出登录</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-top">
+        <h1>仪表盘</h1>
+        <div class="user">你好，管理员</div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">在住学生</div>
+          <div class="num">3,286</div>
+          <div class="hint">本学期已分配床位</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">宿舍楼栋</div>
+          <div class="num">42</div>
+          <div class="hint">含男女混寝楼</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">待处理报修</div>
+          <div class="num">18</div>
+          <div class="hint">需今日跟进</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">待审请假</div>
+          <div class="num">7</div>
+          <div class="hint">含晚归登记</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>快捷入口</h2></div>
+        <div class="quick-links">
+          <a href="building.html">楼栋管理<span>楼栋基础信息</span></a>
+          <a href="bed.html">床位入住<span>分配 / 退宿</span></a>
+          <a href="repair.html">报修处理<span>工单派发与办结</span></a>
+          <a href="settings.html">系统设置<span>门禁、热线、注册开关</span></a>
+        </div>
+      </div>
+
+      <div class="split-2">
+        <div class="panel">
+          <div class="panel-head"><h2>最新报修</h2><a href="repair.html">全部</a></div>
+          <table class="data">
+            <thead><tr><th>标题</th><th>宿舍</th><th>状态</th></tr></thead>
+            <tbody>
+              <tr><td>宿舍灯管闪烁</td><td>梅园1-301</td><td><span class="badge badge-warn">处理中</span></td></tr>
+              <tr><td>门锁松动</td><td>兰园2-201</td><td><span class="badge badge-info">待处理</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>最新公告</h2><a href="notice.html">全部</a></div>
+          <table class="data">
+            <thead><tr><th>标题</th><th>分类</th><th>时间</th></tr></thead>
+            <tbody>
+              <tr><td>春季宿舍安全检查</td><td>安全</td><td>03-10</td></tr>
+              <tr><td>热水供应时间调整</td><td>通知</td><td>03-08</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

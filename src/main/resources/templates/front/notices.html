@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公告中心 · 栖舍</title>
+  <link th:href="@{/css/front.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{front/fragments/nav :: nav('notices')}"></header>
+<div class="container page-banner"><h1>公告中心</h1><p>安全提醒、后勤通知与宿舍活动</p></div>
+<main class="section" style="padding-top:8px">
+  <div class="container">
+    <form class="toolbar" method="get" th:action="@{/notices}">
+      <select class="form-control" name="category">
+        <option value="">全部分类</option>
+        <option value="安全" th:selected="${category=='安全'}">安全</option>
+        <option value="通知" th:selected="${category=='通知'}">通知</option>
+        <option value="活动" th:selected="${category=='活动'}">活动</option>
+        <option value="维修" th:selected="${category=='维修'}">维修</option>
+      </select>
+      <input class="form-control" name="q" th:value="${q}" placeholder="搜索公告标题">
+      <button class="btn btn-primary btn-sm" type="submit">搜索</button>
+    </form>
+    <div class="notice-list">
+      <a class="notice-item" th:each="n : ${pageData.records}" th:href="@{/notice/{id}(id=${n.id})}">
+        <span class="tag tag-info" th:text="${n.category}">通知</span>
+        <div>
+          <h3 th:text="${n.title}">标题</h3>
+          <div class="meta" th:text="${n.publisher}">发布人</div>
+        </div>
+        <time th:text="${n.createTime != null ? #temporals.format(n.createTime,'yyyy-MM-dd') : ''}">日期</time>
+      </a>
+    </div>
+    <div class="pager" style="margin-top:16px;display:flex;gap:10px;justify-content:center" th:if="${pageData.pages > 1}">
+      <a class="btn btn-ghost btn-sm" th:if="${pageData.current > 1}" th:href="@{/notices(page=${pageData.current-1},category=${category},q=${q})}">上一页</a>
+      <span th:text="'第 ' + ${pageData.current} + ' / ' + ${pageData.pages} + ' 页'"></span>
+      <a class="btn btn-ghost btn-sm" th:if="${pageData.current < pageData.pages}" th:href="@{/notices(page=${pageData.current+1},category=${category},q=${q})}">下一页</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
